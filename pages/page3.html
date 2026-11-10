@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f47721">
+  <title>Chaaye Khaana | Contact Us</title>
+  <style>
+    :root {
+      --orange: #f47721;
+      --orange-dark: #d95f12;
+      --cream: #fff8f1;
+      --ink: #29231f;
+      --muted: #75685f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 28px 18px;
+      display: grid;
+      place-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 15%, rgba(244,119,33,.10), transparent 27%),
+        radial-gradient(circle at 88% 85%, rgba(244,119,33,.10), transparent 25%),
+        var(--cream);
+    }
+
+    .contact-card {
+      width: min(100%, 720px);
+      padding: clamp(26px, 6vw, 54px);
+      background: #fff;
+      border: 1px solid rgba(244,119,33,.18);
+      border-radius: 26px;
+      box-shadow: 0 18px 55px rgba(91,54,25,.10);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--orange-dark);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--orange-dark);
+      font-size: clamp(2rem, 6vw, 3rem);
+      text-align: center;
+    }
+
+    .intro {
+      max-width: 500px;
+      margin: 14px auto 30px;
+      color: var(--muted);
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    .help-note {
+      margin: 0 0 24px;
+      padding: 16px 18px;
+      background: var(--cream);
+      border-left: 4px solid var(--orange);
+      border-radius: 12px;
+      color: #594b42;
+      line-height: 1.55;
+    }
+
+    form { display: grid; gap: 16px; }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 700;
+      font-size: .92rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #e8d8ca;
+      border-radius: 11px;
+      background: #fffdfb;
+      color: var(--ink);
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(244,119,33,.13);
+    }
+
+    textarea { min-height: 130px; resize: vertical; }
+
+    .submit-button, .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 22px;
+      border: 0;
+      border-radius: 999px;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .submit-button {
+      color: #fff;
+      background: var(--orange);
+    }
+
+    .submit-button:hover {
+      background: var(--orange-dark);
+      transform: translateY(-1px);
+    }
+
+    .back-link {
+      color: var(--orange-dark);
+      background: #fff1e5;
+    }
+
+    .back-link:hover { background: #ffe4cf; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    #form-message {
+      min-height: 24px;
+      margin: 0;
+      color: #287447;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .footer-note {
+      margin: 26px 0 0;
+      color: #9a8e85;
+      font-size: .82rem;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .contact-card { border-radius: 20px; }
+      .actions { flex-direction: column; }
+      .actions a, .actions button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="contact-card">
+    <p class="eyebrow">Chaaye Khaana</p>
+    <h1>Contact Us for Help</h1>
+    <p class="intro">
+      Need help with your order? Have a question or feedback?
+      Send us a message and our team will be happy to help.
+    </p>
+
+    <p class="help-note">
+      <strong>We're here for you!</strong> Use the form below to tell us
+      what you need help with. Please include your order details if your
+      question is about an order.
+    </p>
+
+    <form id="contact-form">
+      <div>
+        <label for="customer-name">Your name</label>
+        <input id="customer-name" name="name" type="text"
+               placeholder="Enter your name" required>
+      </div>
+
+      <div>
+        <label for="customer-email">Email address</label>
+        <input id="customer-email" name="email" type="email"
+               placeholder="you@example.com" required>
+      </div>
+
+      <div>
+        <label for="help-message">How can we help?</label>
+        <textarea id="help-message" name="message"
+                  placeholder="Write your question or message here..."
+                  required></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="submit-button" type="submit">Send Message</button>
+        <a class="back-link" href="page2.html">Back to Menu</a>
+      </div>
+
+      <p id="form-message" role="status" aria-live="polite"></p>
+    </form>
+
+    <p class="footer-note">Thank you for choosing Chaaye Khaana.</p>
+  </main>
+
+  <script>
+    const contactForm = document.getElementById("contact-form");
+    const formMessage = document.getElementById("form-message");
+
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+
+      const customerName = document.getElementById("customer-name").value.trim();
+
+      formMessage.textContent =
+        "Thank you, " + customerName +
+        "! Your message has been recorded on this page.";
+
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
