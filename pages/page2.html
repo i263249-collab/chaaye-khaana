@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f47721">
+  <title>Chaaye Khaana | Menu</title>
+  <style>
+    :root { --orange: #f47721; --dark-orange: #d95f12; --cream: #fff8f1; --ink: #29231f; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; padding: 28px 18px 48px;
+      font-family: Arial, Helvetica, sans-serif; color: var(--ink);
+      background: var(--cream);
+    }
+    header { max-width: 900px; margin: 0 auto 28px; text-align: center; }
+    .eyebrow { color: var(--dark-orange); font-size: .78rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { color: var(--dark-orange); margin: 8px 0; font-size: clamp(2rem, 6vw, 3rem); }
+    header p { color: #75685f; }
+    .menu { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    .item {
+      background: white; border: 1px solid rgba(244,119,33,.18); border-radius: 18px;
+      padding: 22px; box-shadow: 0 8px 24px rgba(91,54,25,.06);
+    }
+    .item h2 { margin: 0 0 8px; font-size: 1.2rem; }
+    .price { color: var(--dark-orange); font-weight: 700; margin: 0 0 18px; }
+    button {
+      border: 0; border-radius: 999px; background: var(--orange); color: white;
+      padding: 11px 18px; font-weight: 700; font-size: .95rem; cursor: pointer;
+    }
+    button:hover { background: var(--dark-orange); }
+    .cart {
+      max-width: 900px; margin: 24px auto 0; padding: 20px; background: white;
+      border-radius: 18px; border: 1px solid rgba(244,119,33,.18);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    #cart-count { color: var(--dark-orange); font-weight: 700; }
+    .back { display: inline-block; margin-top: 22px; color: var(--dark-orange); font-weight: 700; text-decoration: none; }
+    @media (max-width: 520px) { .cart { align-items: stretch; flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Chaaye Khaana</p>
+    <h1>Our Menu</h1>
+    <p>Choose your favourite drink and add it to your order.</p>
+  </header>
+
+  <main>
+    <section class="menu" aria-label="Menu items">
+      <article class="item">
+        <h2>Tea</h2>
+        <p class="price">Rs. 120</p>
+        <button type="button" onclick="addToCart('Tea', 120)">Add to order</button>
+      </article>
+      <article class="item">
+        <h2>Black Coffee</h2>
+        <p class="price">Rs. 250</p>
+        <button type="button" onclick="addToCart('Black Coffee', 250)">Add to order</button>
+      </article>
+      <article class="item">
+        <h2>Frappe</h2>
+        <p class="price">Rs. 350</p>
+        <button type="button" onclick="addToCart('Frappe', 350)">Add to order</button>
+      </article>
+      <article class="item">
+        <h2>Oreo Shake</h2>
+        <p class="price">Rs. 300</p>
+        <button type="button" onclick="addToCart('Oreo Shake', 300)">Add to order</button>
+      </article>
+    </section>
+
+    <section class="cart" aria-live="polite">
+      <div>
+        <strong>Your order:</strong>
+        <span id="cart-count">0 items</span>
+        <p id="cart-total" style="margin:6px 0 0;color:#75685f;">Total: Rs. 0</p>
+      </div>
+      <button type="button" onclick="showOrder()">Review order</button>
+    </section>
+
+    <div style="max-width:900px;margin:0 auto;">
+      <a class="back" href="index.html">← Back to welcome page</a>
+    </div>
+  </main>
+
+  <script>
+    const cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+      alert(name + " added to your order.");
+    }
+
+    function updateCart() {
+      const count = cart.length;
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      document.getElementById("cart-count").textContent =
+        count + (count === 1 ? " item" : " items");
+      document.getElementById("cart-total").textContent = "Total: Rs. " + total;
+    }
+
+    function showOrder() {
+      if (cart.length === 0) {
+        alert("Your order is empty. Please add an item first.");
+        return;
+      }
+      const lines = cart.map(item => item.name + " - Rs. " + item.price);
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      alert("Your order:\n" + lines.join("\n") + "\nTotal: Rs. " + total);
+    }
+  </script>
+</body>
+</html>
